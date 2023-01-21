@@ -1,2 +1,6 @@
-# Catio_Mosh
-A game about a cat made of slime that got stranded on an island and is fighting for survivial. How long can you survive?
+# Catio Mosh
+
+A very early version of a game that I am working on.
+
+If you want to complain about my code:
+ - Temium#4958
