@@ -1,6 +1,3 @@
-# Catio Mosh
+# Prototype - Moshi Game
 
-A very early version of a game that I am working on.
-
-If you want to complain about my code:
- - Temium#4958
+This is a simple prototype I've written to get a little more familiar with pygame
