@@ -223,8 +223,8 @@ $RECYCLE.BIN/
 *.ignore
 
 # VScode
-.vscode
-__pycache__
+*.vscode/
+*.__pycache__/
 
 # Singular files
 todo.md
