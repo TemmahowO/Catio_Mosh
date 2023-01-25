@@ -49,3 +49,12 @@ def keybinds(class_name, saturation, food):
     for event in pygame.event.get():
         pass
         
+def Inventory(window, colour,  screen_width, screen_height, size, offset=100):
+    rect_list = [Rect(screen_width / 2 - offset, screen_height / 2, size, size), Rect(screen_width / 2 - offset + size, screen_height / 2, size, size),
+                 Rect(screen_width / 2 - offset + size * 2, screen_height / 2, size, size), Rect(screen_width / 2 - offset + size * 3, screen_height / 2, size, size)]
+
+    for i in range(4):
+        pygame.draw.rect(window, colour, rect_list[i], 1)
+    return rect_list, size
+
+    
