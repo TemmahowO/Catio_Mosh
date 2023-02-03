@@ -49,10 +49,23 @@ def main():
     pygame.display.set_caption("Moshi Game")
 
     while Game_on == True:
+        mouse_x_pos = pygame.mouse.get_pos()[0] - square_size /2
+        mouse_y_pos = pygame.mouse.get_pos()[1] - square_size /2
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 Game_on = False
-                
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.mouse.get_pressed()[0] and square_rect_not_held.collidepoint(pygame.mouse.get_pos()) and not handled:
+                    held = True
+                    square_x = mouse_x_pos
+                    square_y = mouse_y_pos
+                if pygame.mouse.get_pressed()[0] and square_rect_held.collidepoint(pygame.mouse.get_pos()) and not handled2:
+                    held = False
+                    square_x = mouse_x_pos
+                    square_y = mouse_y_pos
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_e:
                     if already_pressed:
@@ -63,22 +76,11 @@ def main():
                         inventory_visable = False
                         already_pressed = True
 
-                if pygame.mouse.get_pressed()[0] and square_rect_not_held.collidepoint(pygame.mouse.get_pos()) and not handled:
-                    held = True
-                    square_x = mouse_x_pos
-                    square_y = mouse_y_pos
-                if pygame.mouse.get_pressed()[0] and square_rect_held.collidepoint(pygame.mouse.get_pos()) and not handled2:
-                    held = False
-                    square_x = mouse_x_pos
-                    square_y = mouse_y_pos            
-
-
                 if raw_food_count <= 0:
                     pass
                 elif event.key == K_e or event.key == K_q:
                     player.hunger += food.saturation
                     raw_food_count -= 1
-
               
             if pygame.mouse.get_pressed() == (1, 0, 0) and Rect.colliderect(player.hitbox_rect, tree.rect):
                 red[0] -= 5
@@ -96,6 +98,9 @@ def main():
                 # Prevents an exception.
                 if red[0] <= 0:
                     red[0] = 255
+        
+        square_rect_not_held = Rect(square_x, square_y, 20, 20)
+        square_rect_held = Rect(mouse_x_pos, mouse_y_pos, 20, 20)
 
         ## Collision detection ##
         if Rect.colliderect(player.rect, food.rect):
@@ -136,6 +141,8 @@ def main():
                 square_x = rect_list[3][0] - size /2 + size - 10
                 square_y = rect_list[3][1] - size /2 + size - 10
 
+        handled = pygame.mouse.get_pressed()[0]
+        #handled2 = pygame.mouse.get_pressed()[0]
         player.draw_hitbox(window, gray, 10) # hitbox
         player.draw(window, black, 10) # player
         tree.draw(window, red, 20)
@@ -143,7 +150,9 @@ def main():
             food.draw(window, green, 5)
         if draw_wood == True:
             wood.draw(window, brown, 10)
-        
+        #print(handled)
+        #print("X: ", square_x, "Y: ", square_y)
+        print("Mouse X: ", mouse_x_pos, "Mouse Y: ", mouse_y_pos)
         # Drawing text
         Functions.message_to_screen(window, f"Food: {raw_food_count}", white, 0, 20)
         Functions.message_to_screen(window, f"Wood: {wood_count}", white, 0, 40)

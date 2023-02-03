@@ -225,9 +225,10 @@ $RECYCLE.BIN/
 # VScode
 *.vscode/
 *.__pycache__/
+.vs/
 
 # Singular files
 todo.md
 InventoryTest.py
 
-.gitignore
+*.gitignore

@@ -34,7 +34,7 @@ class Player:
 
     def draw_hitbox(self, window, colour, player_size):
         self.hitbox_rect = Rect(self.x_pos - player_size /2, self.y_pos - player_size /2, 20, 20) # Draws the hitbox at the center of the player.
-        pygame.draw.rect(window, colour, self.hitbox_rect)
+        pygame.draw.rect(window, colour, self.hitbox_rect, 1)
         return self.hitbox_rect
 
 class Object:
