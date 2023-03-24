@@ -1,5 +1,6 @@
 import math
 
+
 class Vector:
     def __init__(self, x: float, y: float):
         self.x = x
@@ -12,18 +13,15 @@ class Vector:
             return Vector(self.x + other.x, self.y + other.y)
         return Vector(self.x + other, self.y + other)
     
-
     def __sub__(self, other):
         if isinstance(other, self.__class__):
             return Vector(self.x - other.x, self.y - other.y)
         return Vector(self.x - other, self.y - other)
     
-
     def __mul__(self, other):
         if isinstance(other, self.__class__):
             return Vector(self.x * other.x, self.y + other.y)
         return Vector(self.x * other, self.y * other)
-
 
     def __turediv__(self, other):
         if isinstance(other, self.__class__):
