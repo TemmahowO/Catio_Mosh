@@ -1,7 +1,8 @@
-# Catio Mosh
+# Tem Engine
 
-A little passion project I am working on to get more familiar with game design and programming.
+A small project to get me more familiar with programming and pygame. (and game dev ofc)
 
 
 If you want to complain about my code:
-- Temium#4958
+- Discord = temium.owo
+- E-mail = peachtemmie@gmail.com
