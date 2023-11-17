@@ -105,25 +105,18 @@ class Objects:
         self.x_pos = x
         self.y_pos = y
         self.hit_points = HP
-
-
-        if self.hit_points <= 0:
-            self.exists = False
+        self.check_for_input = True
+        
         
     def draw(self, surface, colour, size_x=20, size_y=20, outline_only=False):
+        draw_rect = Rect((self.x_pos, self.y_pos, size_x, size_y))
 
         if self.exists and not outline_only:
-            pygame.draw.rect(surface, colour, (self.x_pos, self.y_pos, size_x, size_y))
+            pygame.draw.rect(surface, colour, draw_rect)
         elif self.exists and outline_only:
-            pygame.draw.rect(surface, colour, (self.x_pos, self.y_pos, size_x, size_y), 1)
-            
-        else:
-            print("Object non-existant")
-        
-    def collision(self, rect1, rect2):
-        if rect.colliderect(rect1, rect2):
-            return True
-        return False
+            pygame.draw.rect(surface, colour, draw_rect, 1)
+
+        return draw_rect
 
 class Player(Objects):
     def movement(self, speed):
@@ -131,21 +124,22 @@ class Player(Objects):
         x_speed = 0
         y_speed = 0
 
-        # Left and Right movement
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            x_speed = speed
-        elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            x_speed = -speed
-        else:
-            x_speed = 0
+        if self.check_for_input:
+            # Left and Right movement
+            if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+                x_speed = speed
+            elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
+                x_speed = -speed
+            else:
+                x_speed = 0
 
-        # Up and Down movement
-        if keys[pygame.K_UP] or keys[pygame.K_w]:
-            y_speed = -speed
-        elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            y_speed = speed
-        else:
-            y_speed = 0
-        
-        self.x_pos += x_speed
-        self.y_pos += y_speed
+            # Up and Down movement
+            if keys[pygame.K_UP] or keys[pygame.K_w]:
+                y_speed = -speed
+            elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
+                y_speed = speed
+            else:
+                y_speed = 0
+            
+            self.x_pos += x_speed
+            self.y_pos += y_speed

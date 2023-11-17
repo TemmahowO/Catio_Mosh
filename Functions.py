@@ -1,5 +1,6 @@
 import time
 from Classes import Objects
+from pygame import font
 
 def cooldown(times):
     time.sleep(times)
@@ -17,3 +18,13 @@ def draw_grid(surface, colour, size, no_of_squares, max_squares_in_row, starting
     
     for x in range(len(rect_list)):
         rect_list[x].draw(surface, colour, size_x=size, size_y=size, outline_only=True)
+
+def draw_text(surface, size, text, colour, coords: tuple):
+    font.init()
+    lovebytes = font.Font("fonts/lovebytes.ttf", size)
+    surface.blit(lovebytes.render(text, True, colour), coords)
+
+def collision_check(rect1, rect2):
+    if rect1.colliderect(rect2):
+        return True
+    return False
